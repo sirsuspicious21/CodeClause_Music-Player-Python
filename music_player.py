@@ -6,12 +6,12 @@ import os
 
 mixer.init()
 
-root = Tk()
-root.geometry('800x250')
-root.title('Music Player')
-root.resizable(0,0)
+prompt = Tk()
+prompt.geometry('800x250')
+prompt.title('Music Player')
+prompt.resizable(0,0)
 
-root.update()
+prompt.update()
 
 def play_song(song_name: StringVar, songs_list: Listbox, status: StringVar):
     song_name.set(songs_list.get(ACTIVE))
@@ -37,17 +37,17 @@ def resume_song(status: StringVar):
     mixer.music.unpause()
     status.set("Resumed")
 
-song_frame = LabelFrame(root, text='Current song', bg='LightBlue', width=450, height=100)
+song_frame = LabelFrame(prompt, text='Current song', bg='LightBlue', width=450, height=100)
 song_frame.place(x=0, y=0)
 
-button_frame = LabelFrame(root, text='Control Buttons', bg='#8cf3e5', width=450, height=130)
+button_frame = LabelFrame(prompt, text='Control Buttons', bg='#8cf3e5', width=450, height=130)
 button_frame.place(y=100)
 
-listbox_frame = LabelFrame(root, text='Playlist', bg='#1ecbe1', width=400, height=130)
+listbox_frame = LabelFrame(prompt, text='Playlist', bg='#1ecbe1', width=400, height=130)
 listbox_frame.place(x=450, y=0, height=230, width=350)
 
-current_song = StringVar(root, value='<Not selected>')
-song_status = StringVar(root, value='<Not available>')
+current_song = StringVar(prompt, value='<Not selected>')
+song_status = StringVar(prompt, value='<Not available>')
 
 playList = Listbox(listbox_frame, font=('Helvetica', 12), selectbackground='#0bf414')
 
@@ -80,6 +80,6 @@ stop_btn.place(x=315, y=15)
 load_btn = Button(button_frame, text='Load Directory', bg='#7ef0e6', font=("Sans", 13), width=35, command=lambda: load(playList))
 load_btn.place(x=55, y=60)
 
-Label(root, textvariable=song_status, bg="#0071ff", font=('Times', 10), justify=LEFT).pack(side=BOTTOM, fill=X)
+Label(prompt, textvariable=song_status, bg="#0071ff", font=('Times', 10), justify=LEFT).pack(side=BOTTOM, fill=X)
 
-root.mainloop()
+prompt.mainloop()
